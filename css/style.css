@@ -15,3 +15,53 @@ height: 100%;
 height: 100%;
 background-color: #ccc;
 }
+
+.menu-info {
+    width: 300px;
+    float: left;
+}
+
+.menu-info-cache {
+	width: 25px;
+	overflow: hidden;
+	position: absolute;
+	z-index: 1000;
+    float: left;
+}
+
+.contenu-menu-info {
+    padding-top: 25px;
+
+    padding-left: 10px;
+}
+
+.contenu-menu-info-cache {
+	display: none;
+}
+
+#controle {
+    width: 25px;
+    height: 20px;
+    float: right;
+    background-color: white;
+}
+
+.ligne {
+    display: block;  
+    margin: 4px 0px 4px 0px;  
+    height: 2px;  
+    background: black;
+}
+
+@media screen and (max-width: 640px) {
+	#menu-info {
+		width: 25px;
+		overflow: hidden;
+		position: absolute;
+		z-index: 1000;
+	}
+	#contenu-menu-info {
+		display: none;
+	}
+
+}
