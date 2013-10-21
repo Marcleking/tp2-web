@@ -19,6 +19,8 @@ background-color: #ccc;
 .menu-info {
     width: 300px;
     float: left;
+    overflow: auto;
+    height: 100%;
 }
 
 .menu-info-cache {
@@ -31,7 +33,6 @@ background-color: #ccc;
 
 .contenu-menu-info {
     padding-top: 25px;
-
     padding-left: 10px;
 }
 
@@ -40,9 +41,20 @@ background-color: #ccc;
 }
 
 #controle {
-    width: 25px;
+
+}
+
+.controle {
+	width: 25px;
     height: 20px;
     float: right;
+    background-color: white;
+}
+
+.controle-cache {
+	width: 25px;
+    height: 20px;
+    float: left;
     background-color: white;
 }
 
@@ -53,13 +65,21 @@ background-color: #ccc;
     background: black;
 }
 
+.contenu-liste-wifi {
+
+}
+
+.contenu-liste-wifi-cache {
+	display: none;
+}
+
+
+
 @media screen and (max-width: 640px) {
 	#menu-info {
-		width: 25px;
-		overflow: hidden;
-		position: absolute;
-		z-index: 1000;
-	}
+		width: 100%;
+		float: right;
+}
 	#contenu-menu-info {
 		display: none;
 	}

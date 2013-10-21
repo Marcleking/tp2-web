@@ -76,7 +76,7 @@
 			try {
 				//Insertion des données dans la table des wifi
 				$reqProf = "INSERT INTO wifi
-								VALUES (:id, :Arrondissement, :Nom_batiment, :No_civique, :Rue, GeomFromText(:Coordonnee));";
+								VALUES (:id, :Arrondissement, :Nom_batiment, :No_civique, :Rue, PointFromText(:Coordonnee));";
 				$prepReqProf = $connBD -> prepare($reqProf);
 				
 				//Création de la coordonnée pour MySQL
