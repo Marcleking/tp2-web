@@ -7,7 +7,9 @@ var listeWifi;
 
 	xhr.onreadystatechange = chargementWifi_callback;
 
-	xhr.open('GET', 'retourneWifi.php', true);
+	xhr.open('GET', 'php/retourneWifi.php', true);
+	
+	console.log(xhr);
 
 	xhr.send(null);
 
@@ -25,6 +27,9 @@ function chargementWifi_callback() {
 		}
 		//Création de la liste des wifi
 		listeWifi = objWifi;
+		controleurChargement("listeWifi");
+		
+		
 	}
 }
 
