@@ -1,22 +1,23 @@
-﻿var xhr;
+﻿var xhrWifi;
 
 (function () {
 
-	xhr = new XMLHttpRequest();
+	xhrWifi = new XMLHttpRequest();
 
-	xhr.onreadystatechange = chargementWifi_callback;
+	xhrWifi.onreadystatechange = chargementWifi_callback;
 
-	xhr.open('GET', 'php/retourneWifi.php', true);
+	xhrWifi.open('GET', 'php/retourneWifi.php', true);
 
-	xhr.send(null);
+	xhrWifi.send(null);
 
 })();
 
 function chargementWifi_callback() {
+	var objWifi;
 
-	if(xhr.readyState == 4 && xhr.status == 200) {
+	if(xhrWifi.readyState == 4 && xhrWifi.status == 200) {
 		try {
-			objWifi = JSON.parse(xhr.responseText);
+			objWifi = JSON.parse(xhrWifi.responseText);
 		} catch (e) {
 			objWifi = {
 				"erreur" : "La réponse AJAX n\'est pas une expression JSON valide."
@@ -25,9 +26,8 @@ function chargementWifi_callback() {
 		//Création de la liste des wifi
 		listeWifi = objWifi;
 		controleurChargement("listeWifi");
-		
-		
 	}
+	/////Faire gestion quand le call marche pas
 }
 
 

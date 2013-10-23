@@ -12,3 +12,13 @@
 function $(idElem) {
 	return document.getElementById(idElem);
 }
+
+function ajoutInfoWindow(information, repere) {
+		if (typeof infoWindowOuvert != "undefined") {
+			infoWindowOuvert.close();
+		}
+		var infoWindow = new google.maps.InfoWindow({content: information});
+		infoWindow.open(carte, repere);
+		carte.panTo(repere.getPosition());
+		infoWindowOuvert = infoWindow;
+	}
