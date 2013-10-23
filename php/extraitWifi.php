@@ -16,9 +16,9 @@
 	//Création des tables
 	try {
 		/////////////À supprimer
-		$reqProf = "DROP TABLE Avis, wifi";
-		$prepReqProf = $connBD -> prepare($reqProf);
-		$prepReqProf -> execute();
+		//$reqProf = "DROP TABLE Avis, wifi";
+		//$prepReqProf = $connBD -> prepare($reqProf);
+		//$prepReqProf -> execute();
 	
 		//Création de la table (si elle n'existe pas) listant les wifi
 		$reqProf = "CREATE TABLE IF NOT EXISTS wifi (	Id varchar(10) NOT NULL,
