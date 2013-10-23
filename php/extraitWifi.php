@@ -4,7 +4,7 @@
 //Création de la structure de la base de donnée
 
 	//Connexion à la base de données
-	require("include/param-bd.inc");
+	require("../include/param-bd.inc");
 	try {
 		$connBD = new PDO("mysql:host=$dbHote; dbname=$dbNom", $dbUtilisateur, $dbMotPasse, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 		// Pour lancer les exceptions lorsqu'il y des erreurs PDO.
@@ -44,7 +44,7 @@
 	}
 
 	//Extraction des données sur les wifi
-	$xml=simplexml_load_file("donnees-ouvertes/wifi.kml");
+	$xml=simplexml_load_file("../donnees-ouvertes/wifi.kml");
 	
 	/////////////////////////À REVOIR
 	$listeWifi = $xml->children()->children()[3];

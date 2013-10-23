@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	header("Content-type: application/json; charset=utf-8");
 	header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
 	header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
@@ -12,7 +12,7 @@
 		$connBD = new PDO("mysql:host=$dbHote; dbname=$dbNom", $dbUtilisateur, $dbMotPasse, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 		$connBD -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	} catch (PDOException $e) {
-		exit( "Erreur lors de la connexion à la BD :<br />\n" .  $e->getMessage() );
+		exit("{\"Erreur\" : \"Erreur lors de la connexion à la BD : " .  $e->getMessage() . "\"]}" );
 	}
 	
 	//Requète sur la base de données pour aller chercher tout les wifi

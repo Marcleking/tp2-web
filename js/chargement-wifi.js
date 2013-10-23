@@ -1,5 +1,4 @@
 ﻿var xhr;
-var listeWifi;
 
 (function () {
 
@@ -8,8 +7,6 @@ var listeWifi;
 	xhr.onreadystatechange = chargementWifi_callback;
 
 	xhr.open('GET', 'php/retourneWifi.php', true);
-	
-	console.log(xhr);
 
 	xhr.send(null);
 
