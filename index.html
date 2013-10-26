@@ -7,14 +7,15 @@
 	<title>Travail pratique #2</title>
 	<link type="text/css" href="css/style.css" rel="stylesheet" />
 	<script src="js/util.js"></script>
-	<script src="js/chargement-wifi.js"></script> <!-- /////// Faut tu chargé ça en asyncrone ou jsuis correct ? -->
+	<script src="js/chargement-wifi.js"></script>
+	<script src="js/gestion-kml.js"></script>
 	<script src="js/chargement-arrondissements.js"></script>
 	<script src="js/initialisation.js"></script>
 	<script src="js/gestion-wifi.js"></script>
-	<script src="js/gestion-kml.js"></script>
 	<script src="js/gestion-arrondissements.js"></script>
-<script>
-	
+	<script src="js/chargement-avis.js"></script>
+	<script>
+
 	function gestionMenu() {
 
 		if ($("menu-info").className == "menu-info-cache") {
@@ -35,24 +36,11 @@
 			$("controle").className = "controle";
 		}
 	}
-	
-	function gestionListeWifi() {
-		if ($('contenu-liste-wifi').className == "contenu-liste-wifi") {
-			$('contenu-liste-wifi').className = "contenu-liste-wifi-cache";
-			$('controle-wifi').textContent = "Afficher la liste des wifi";
-		} else {
-			$('contenu-liste-wifi').className = "contenu-liste-wifi";
-			$('controle-wifi').textContent = "Cacher la liste des wifi";
-		}
-	}
-
-	function gestionKml(e) {
-		afficherCacherKml();
-	}
-</script>
+	</script>
 </head>
 
 <body>
+
 	<div id="menu-info" class="menu-info-cache">
 		<div id="controle" class="controle-cache">
 			<span class="ligne"></span>
@@ -60,19 +48,17 @@
 			<span class="ligne"></span>
 		</div>
 		<div id="contenu-menu-info" class="contenu-menu-info-cache">
-			<div id="liste-wifi">
-				<div id="controle-wifi">Afficher la liste des wifi</div>
-				<div id="contenu-liste-wifi" class="contenu-liste-wifi-cache"></div>
-			</div>
+			<select id="liste-de-wifi"><option style="text-align:center;">Choississez un arrondissement</option></select>
 			<div id="kml-rtc">
 				<input type="checkbox" id="kml-rtc-checkbox" name="kml" checked="true"/>
 				<label for="kml-rtc-checkbox">Trajets des autobus du RTC</label>
 			</div>
 		</div>
-		
 	</div>
 	<div id="carte"></div>
 
+	
+	
 </body>
 
 </html>

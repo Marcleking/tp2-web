@@ -16,12 +16,12 @@
 	//Création des tables
 	try {
 		/////////////À supprimer
-		//$reqProf = "DROP TABLE Avis, wifi";
-		//$prepReqProf = $connBD -> prepare($reqProf);
-		//$prepReqProf -> execute();
+		$reqProf = "DROP TABLE Avis, wifi";
+		$prepReqProf = $connBD -> prepare($reqProf);
+		$prepReqProf -> execute();
 	
 		//Création de la table (si elle n'existe pas) listant les wifi
-		$reqProf = "CREATE TABLE IF NOT EXISTS wifi (	Id varchar(10) NOT NULL,
+		$reqProf = "CREATE TABLE IF NOT EXISTS wifi (	Id smallint(5) NOT NULL,
 														Arrondissement varchar(255) NOT NULL,
 														Nom_batiment varchar(255),
 														No_civique smallint(5) unsigned,
@@ -33,9 +33,11 @@
 		$prepReqProf -> execute();
 		
 		//Création de la table (si elle n'existe pas) listant les avis sur les wifi
-		$reqProf = "CREATE TABLE IF NOT EXISTS Avis (	Commentaire varchar(5000) NOT NULL,
-														IdWifi varchar(10) NOT NULL,
-														FOREIGN KEY (IdWifi) REFERENCES wifi(Id)
+		$reqProf = "CREATE TABLE IF NOT EXISTS Avis (	Id int NOT NULL AUTO_INCREMENT,
+														Commentaire varchar(5000) NOT NULL,
+														IdWifi smallint(5) NOT NULL,
+														FOREIGN KEY (IdWifi) REFERENCES wifi(Id),
+														PRIMARY KEY (Id)
 														)";
 		$prepReqProf = $connBD -> prepare($reqProf);
 		$prepReqProf -> execute();
@@ -45,27 +47,29 @@
 
 	//Extraction des données sur les wifi
 	$xml=simplexml_load_file("../donnees-ouvertes/wifi.kml");
-	
+
 	/////////////////////////À REVOIR
-	$listeWifi = $xml->children()->children()[3];
-	foreach($listeWifi->children() as $child)
+	foreach($xml->Document->Folder->Placemark as $child)
 	{
 		if($child->count() > 0) {
 			//nom
-			$id = $child->children();
+			$id = str_replace("kml_", '', $child->name);
 			
 			//Arrondissement
-			$arrondissement = $child->children()[3]->children()->children()[0];
+			$arrondissement = $child->ExtendedData->SchemaData->SimpleData;
 			
 			//No civique
-			$no_civique = $child->children()[3]->children()->children()[1];
+			$no_civique = $child->ExtendedData->SchemaData->children()[1];
 			
 			//Rue
-			$rue = $child->children()[3]->children()->children()[3];
+			$rue = $child->ExtendedData->SchemaData->children()[3];
 			
 			//Nom du batiment
-			$nom_batiment = $child->children()[3]->children()->children()[2];
+			$nom_batiment = $child->ExtendedData->SchemaData->children()[2];
 			
+			if ($nom_batiment == "") {
+				$nom_batiment = "Nom du batiment indisponible";
+			}
 			//Coordonnée
 			if (isset($child->children()[4])) {
 				$coordonnee = $child->children()[4]->children();

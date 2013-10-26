@@ -1,7 +1,7 @@
 var elementsCharges = {
 	"dom": false,
 	"listeWifi": false,
-	"kml": false,
+	"listeAvis": false,
 	"arrondissements": false,
 	"map": false
 };
@@ -11,6 +11,7 @@ var infoWindowOuvert;
 var latDefaut = 46.876423;
 var longDefaut = -71.190285;
 var layerKml;
+var listeAvis;
 var docXML;
 
 function initCarte() {
@@ -80,8 +81,10 @@ function getCurrentPositionFail(erreur) {
 
 function initialisation() {
 		$("controle").addEventListener('click', gestionMenu, false);
-		$("controle-wifi").addEventListener('click', gestionListeWifi, false);
-		$("kml-rtc-checkbox").addEventListener('click', gestionKml, false);
+		$("kml-rtc-checkbox").addEventListener('click', afficherCacherKml, false);
+		$("liste-de-wifi").addEventListener('change', function() {
+			ouvrirInfoWindow(listeWifi.wifi[$("liste-de-wifi").value - 1]);
+		}, false);
 	}
 
 window.addEventListener('DOMContentLoaded' , function() {
@@ -93,11 +96,9 @@ window.addEventListener('DOMContentLoaded' , function() {
 
 function mapChargee() {
 	controleurChargement("map");
-	chargerScriptAsync("js/chargement-kml.js", null);
 }
 
 function controleurChargement(nouvelleElementCharge) {
-	
 	//Verification si l'élément est dans les éléments géré
 	if(typeof elementsCharges[nouvelleElementCharge] != "undefined") {
 		elementsCharges[nouvelleElementCharge] = true;
@@ -115,14 +116,13 @@ function controleurChargement(nouvelleElementCharge) {
 	}
 }
 
-function traitementPostChargement() {
+function traitementPostChargement() { //////////mettre dans un fichier asychrone
 	//Map
 	initCarte();
 
-	creerArrondissements(); /////////////Voir pourquoi on peut pas cliquer sur le kml
+	creerArrondissements();
 
 	//Afficher le kml sur la carte
 	afficherCacherKml();
-
-	
 }
+
