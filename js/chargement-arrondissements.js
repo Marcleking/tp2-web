@@ -6,6 +6,8 @@ var xhrArrondissements;
 	
 	var lienDocXml = 'php/load-arrondissements-xml.php';
 	
+	
+	
 	var erreur = false;
 	
 	try{
@@ -21,6 +23,8 @@ var xhrArrondissements;
 		// Configuration de la requête (GET) en mode asynchrone (true).
 		xhrArrondissements.open('GET', lienDocXml, true);
 		xhrArrondissements.send(null);
+		
+		console.log(xhrArrondissements);
 	}
 })();
 

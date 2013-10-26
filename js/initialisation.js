@@ -81,7 +81,7 @@ function getCurrentPositionFail(erreur) {
 function initialisation() {
 		$("controle").addEventListener('click', gestionMenu, false);
 		$("controle-wifi").addEventListener('click', gestionListeWifi, false);
-		$("kml-rtc-checkbox").addEventListener('click', gestionKml, false);
+		$("kml-rtc-checkbox").addEventListener('click', afficherCacherKml, false);
 	}
 
 window.addEventListener('DOMContentLoaded' , function() {

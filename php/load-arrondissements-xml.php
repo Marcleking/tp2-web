@@ -7,8 +7,10 @@ header("Content-type: application/xml; charset=utf-8");
 header("Access-Control-Allow-Origin: *");
 
 // Chargement du fichier XML.
-$xml = simplexml_load_file('../donnees-ouvertes/ARROND.XML');
+$xml = simplexml_load_file('http://donnees.ville.quebec.qc.ca/Handler.ashx?id=2&f=XML');
 
+// Adresse 
+// http://donnees.ville.quebec.qc.ca/Handler.ashx?id=2&f=XML
 // Ré-écriture du fichier XML dans la réponse.
 echo $xml->asXML();
 
