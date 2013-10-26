@@ -65,6 +65,7 @@ function getCurrentPositionSuccess(position) {
 						"icon": "image/ici.png",
 						"clickable": true,
 						"draggable": false,
+						"animation": google.maps.Animation.DROP,
 						"title": "Vous êtes ici !"};
 	
 	var repere = new google.maps.Marker(optionsRepere);

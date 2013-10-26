@@ -46,19 +46,6 @@ function gestionClickRepere(wifi) {
 
 function gestionClickRepereDansMenu (wifi) {
 	//Ajout du wifi à l'interface HTML
-	/*
-	var div = document.createElement("div");
-	var text = document.createTextNode(wifi.Nom_batiment);
-	
-	div.id = wifi.id;
-	div.appendChild(text);
-	$('contenu-liste-wifi').appendChild(div);
-
-	$(div.id).addEventListener('click', function() {
-		ouvrirInfoWindow(wifi);
-	}, false);
-
-*/
 	
 	var option = document.createElement("option");
 	option.text = wifi.Nom_batiment;
@@ -78,7 +65,7 @@ function ouvrirInfoWindow(wifi) {
 		carte.panTo(wifi.repere.getPosition());
 		wifiOuvert = wifi;
 	} catch (e) {
-		
+
 	}
 }
 
