@@ -101,13 +101,13 @@ com.dinfogarneau.cours526.ajoutArrondissementsMenu = function (arrondissements){
 	label.textContent = "Tout décocher";
 	label.htmlFor = checkbox.id;
 
-	$("arrondissements").appendChild(header,br);
-	$("arrondissements").appendChild(checkbox);
+	com.dinfogarneau.cours526.$("arrondissements").appendChild(header,br);
+	com.dinfogarneau.cours526.$("arrondissements").appendChild(checkbox);
 	
 	br = document.createElement("br");
 	
-	$("arrondissements").appendChild(label);
-	$("arrondissements").appendChild(br);
+	com.dinfogarneau.cours526.$("arrondissements").appendChild(label);
+	com.dinfogarneau.cours526.$("arrondissements").appendChild(br);
 		
 	addEvent([checkbox],"global");
 		
@@ -125,9 +125,9 @@ com.dinfogarneau.cours526.ajoutArrondissementsMenu = function (arrondissements){
 
 		br = document.createElement("br");
 		
-		$("arrondissements").appendChild(checkbox);
-		$("arrondissements").appendChild(label);
-		$("arrondissements").appendChild(br);
+		com.dinfogarneau.cours526.$("arrondissements").appendChild(checkbox);
+		com.dinfogarneau.cours526.$("arrondissements").appendChild(label);
+		com.dinfogarneau.cours526.$("arrondissements").appendChild(br);
 
 		addEvent([checkbox,i],"local");
 	}
