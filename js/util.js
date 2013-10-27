@@ -1,4 +1,4 @@
-﻿function chargerScriptAsync(urlFichier, callbackFct) {
+﻿com.dinfogarneau.cours526.chargerScriptAsync = function (urlFichier, callbackFct) {
 	var script = document.createElement('script');
 	script.src = urlFichier;
 	script.async = true;
@@ -9,7 +9,7 @@
 	document.documentElement.firstChild.appendChild(script);
 }
 
-function $(idElem) {
+com.dinfogarneau.cours526.$ = function (idElem) {
 	return document.getElementById(idElem);
 }
 

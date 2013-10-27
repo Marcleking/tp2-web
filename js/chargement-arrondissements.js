@@ -1,6 +1,6 @@
 // Charge le document XML
 
-var xhrArrondissements;
+com.dinfogarneau.cours526.xhrArrondissements;
 
 (function (){
 	
@@ -8,7 +8,7 @@ var xhrArrondissements;
 	var erreur = false;
 	
 	try{
-		xhrArrondissements = new XMLHttpRequest();
+		com.dinfogarneau.cours526.xhrArrondissements = new XMLHttpRequest();
 	} catch (e){
 		alert('Erreur: Impossible de créer l\'objet XMLHttpRequest');
 		erreur = true;
@@ -16,25 +16,25 @@ var xhrArrondissements;
 	
 	if(!erreur){
 		// Fonction à appeler lorsque l'état de la requête change (callback).
-		xhrArrondissements.onreadystatechange = xhrArrondissementsCallback
+		com.dinfogarneau.cours526.xhrArrondissements.onreadystatechange = com.dinfogarneau.cours526.xhrArrondissementsCallback
 		// Configuration de la requête (GET) en mode asynchrone (true).
-		xhrArrondissements.open('GET', lienDocXml, true);
-		xhrArrondissements.send(null);
+		com.dinfogarneau.cours526.xhrArrondissements.open('GET', lienDocXml, true);
+		com.dinfogarneau.cours526.xhrArrondissements.send(null);
 	}
 })();
 
 // Fonction callback pour la requête AJAX
-function xhrArrondissementsCallback(){
+com.dinfogarneau.cours526.xhrArrondissementsCallback = function (){
 	// La requête est-elle complétée (readyState=4)  ? 
-	if( xhrArrondissements.readyState == 4 )
+	if( com.dinfogarneau.cours526.xhrArrondissements.readyState == 4 )
 	{
 		// Le code de retour d'une requête xhrArrondissements est 200 (OK) si tout s'est bien déroulé.
-		if ( xhrArrondissements.status != 200 ) {
-			alert( 'Erreur: La requête HTTP a échoué (code=' + xhrArrondissements.status +  ')' );
+		if ( com.dinfogarneau.cours526.xhrArrondissements.status != 200 ) {
+			alert( 'Erreur: La requête HTTP a échoué (code=' + com.dinfogarneau.cours526.xhrArrondissements.status +  ')' );
 			//////////Return en xml
 		} else {
-			docXML = xhrArrondissements.responseXML;
-			controleurChargement("arrondissements");
+			com.dinfogarneau.cours526.docXML = com.dinfogarneau.cours526.xhrArrondissements.responseXML;
+			com.dinfogarneau.cours526.controleurChargement("arrondissements");
 		}
 	}
 }

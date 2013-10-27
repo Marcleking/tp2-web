@@ -1,15 +1,14 @@
 // Arrondissements
-function creerArrondissements(){
+com.dinfogarneau.cours526.creerArrondissements = function (){
 	// Structure JSON contenant les données sur les arrondissements
 	var arrondissements = new Array();
-	var lesCoordsArrondissements = docXML.getElementsByTagName("Geometrie");
-	var lesNoms = docXML.getElementsByTagName("Nom");
-	var lesAbrevations = docXML.getElementsByTagName("Abreviation");
+	var lesCoordsArrondissements = com.dinfogarneau.cours526.docXML.getElementsByTagName("Geometrie");
+	var lesNoms = com.dinfogarneau.cours526.docXML.getElementsByTagName("Nom");
+	var lesAbrevations = com.dinfogarneau.cours526.docXML.getElementsByTagName("Abreviation");
 	
 	for(var i = 0; i < lesCoordsArrondissements.length; i++) {
 		// Génération de la couleur pour l'arrondissement
-		
-		couleur = genererCouleurArrondissement(lesAbrevations[i].textContent);
+		var couleur = genererCouleurArrondissement(lesAbrevations[i].textContent);
 		
 		// Création du polygone
 		
@@ -59,11 +58,11 @@ function creerArrondissements(){
 		);
 	}
 	
-	ajoutArrondissementsMenu(arrondissements);
+	com.dinfogarneau.cours526.ajoutArrondissementsMenu(arrondissements);
 	
 }
 
-function genererCouleurArrondissement (abrevation){
+com.dinfogarneau.cours526.genererCouleurArrondissement = function (abrevation){
 	// Déclaration des variables nécessaires à la génération du nombre
 	var a = 16807, m = 0x7FFFFFFF, min = 0, max = 256;
 	
@@ -73,23 +72,22 @@ function genererCouleurArrondissement (abrevation){
 		couleurs.push(((a * abrevation.charCodeAt(i)) % m) % max);
 	}
 	
-	return rgbToHex(couleurs[0],couleurs[1],couleurs[2]);
+	return com.dinfogarneau.cours526.rgbToHex(couleurs[0],couleurs[1],couleurs[2]);
 }
 
-function componentToHex(c) {
+com.dinfogarneau.cours526.componentToHex = function (c) {
     var hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
 }
 
-function rgbToHex(r, g, b) {
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+com.dinfogarneau.cours526.rgbToHex = function (r, g, b) {
+    return "#" + com.dinfogarneau.cours526.componentToHex(r) + com.dinfogarneau.cours526.componentToHex(g) + com.dinfogarneau.cours526.componentToHex(b);
 }
 
-function ajoutArrondissementsMenu(arrondissements){
+com.dinfogarneau.cours526.ajoutArrondissementsMenu = function (arrondissements){
 	
 	var header = document.createElement("h1");
 	header.textContent = "Arrondissements de la Ville de Québec";
-	
 	
 	var br = document.createElement("br");
 
@@ -98,8 +96,7 @@ function ajoutArrondissementsMenu(arrondissements){
 	checkbox.id = "toutCocherDecocher";
 	checkbox.name="tousArrondissements";
 	checkbox.checked = true;
-	//checkbox.addEventListener('click',function(){toutCocherDecocher(checkbox);},false);
-
+	
 	var label = document.createElement("label");
 	label.textContent = "Tout décocher";
 	label.htmlFor = checkbox.id;
@@ -137,19 +134,18 @@ function ajoutArrondissementsMenu(arrondissements){
 	
 	function addEvent(params,type){
 		if (type == "local"){
-			params[0].addEventListener('change',function(){afficherCacherArrondissement(arrondissements[params[1]]);},false);
+			params[0].addEventListener('change',function(){com.dinfogarneau.cours526.afficherCacherArrondissement(arrondissements[params[1]]);},false);
 		}
 		else if (type == "global"){
-			params[0].addEventListener('change',function(){toutCocherDecocher(params[0]);},false);
+			params[0].addEventListener('change',function(){com.dinfogarneau.cours526.toutCocherDecocher(params[0]);},false);
 		}
 	}
 }
 
-
-function afficherCacherArrondissement(arrondissement){
+com.dinfogarneau.cours526.afficherCacherArrondissement = function (arrondissement){
 	if(arrondissement.polygon.map == null)
 	{
-		arrondissement.polygon.setMap(carte);
+		arrondissement.polygon.setMap(com.dinfogarneau.cours526.carte);
 	}
 	else
 	{
@@ -157,7 +153,7 @@ function afficherCacherArrondissement(arrondissement){
 	}
 }
 
-function toutCocherDecocher(checkbox){
+com.dinfogarneau.cours526.toutCocherDecocher = function (checkbox){
 	
 	var chkArrondissements = document.getElementsByName("arrondissements");
 	var cocher, texte;
@@ -169,12 +165,10 @@ function toutCocherDecocher(checkbox){
 		texte = "Tout décocher";
 	}
 	
-	var label = findLabelForControl(checkbox);
+	var label = com.dinfogarneau.cours526.findLabelForControl(checkbox);
 	label.textContent = texte;
 	for(var i = 0; i < chkArrondissements.length; i++){
 		if(chkArrondissements[i].checked != cocher){
-			
-			
 			// Appel l'event change (le fait de changer la propriété ne trigger pas l'événement)
 			if ("createEvent" in document) {
 				var evt = document.createEvent("HTMLEvents");
@@ -191,14 +185,13 @@ function toutCocherDecocher(checkbox){
 
 /////////////////////////////// À mettre dans util.js ??????
 // Permet de trouver l'élément label d'un contrôle
-function findLabelForControl(element) {
+com.dinfogarneau.cours526.findLabelForControl = function (element) {
 	var idVal = element.id;
-	labels = document.getElementsByTagName('label');
+	var labels = document.getElementsByTagName('label');
 	
 	var i = 0;
     while(labels[i].htmlFor != idVal){
 		i++;
 	}
 	return labels[i];
-   
 }

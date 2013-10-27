@@ -1,29 +1,29 @@
-﻿var xhrWifi;
+﻿com.dinfogarneau.cours526.xhrWifi;
 
 (function () {
 
-	xhrWifi = new XMLHttpRequest();
+	com.dinfogarneau.cours526.xhrWifi = new XMLHttpRequest();
 
-	xhrWifi.onreadystatechange = chargementWifi_callback;
+	com.dinfogarneau.cours526.xhrWifi.onreadystatechange = com.dinfogarneau.cours526.chargementWifi_callback;
 
-	xhrWifi.open('GET', 'php/retourneWifi.php', true);
+	com.dinfogarneau.cours526.xhrWifi.open('GET', 'php/retourneWifi.php', true);
 
-	xhrWifi.send(null);
+	com.dinfogarneau.cours526.xhrWifi.send(null);
 
 })();
 
-function chargementWifi_callback() {
+com.dinfogarneau.cours526.chargementWifi_callback = function () {
 	var objWifi;
 
-	if(xhrWifi.readyState == 4 && xhrWifi.status == 200) {
+	if(com.dinfogarneau.cours526.xhrWifi.readyState == 4 && com.dinfogarneau.cours526.xhrWifi.status == 200) {
 		try {
-			objWifi = JSON.parse(xhrWifi.responseText);
+			objWifi = JSON.parse(com.dinfogarneau.cours526.xhrWifi.responseText);
 		} catch (e) {
 			objWifi = {"erreur" : "La réponse AJAX n\'est pas une expression JSON valide."};
 		}
 		//Création de la liste des wifi
-		listeWifi = objWifi;
-		controleurChargement("listeWifi");
+		com.dinfogarneau.cours526.listeWifi = objWifi;
+		com.dinfogarneau.cours526.controleurChargement("listeWifi");
 	}
 }
 
