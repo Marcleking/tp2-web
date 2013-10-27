@@ -22,7 +22,7 @@
 								"idWifi" => $_POST["idWifi"]
 								));
 		} catch (PDOException $e) {
-			exit("{\"Message\" : \"Erreur lors de l'envoie de l'avis.\"}");
+			exit("{\"Message\" : \"Erreur lors de l'envoie de l'avis. L'avis ne sera pas conservé.\"}");
 		}
 		
 		$prepReq -> closeCursor();

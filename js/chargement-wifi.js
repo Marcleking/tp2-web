@@ -19,15 +19,12 @@ function chargementWifi_callback() {
 		try {
 			objWifi = JSON.parse(xhrWifi.responseText);
 		} catch (e) {
-			objWifi = {
-				"erreur" : "La réponse AJAX n\'est pas une expression JSON valide."
-			};
+			objWifi = {"erreur" : "La réponse AJAX n\'est pas une expression JSON valide."};
 		}
 		//Création de la liste des wifi
 		listeWifi = objWifi;
 		controleurChargement("listeWifi");
 	}
-	/////Faire gestion quand le call marche pas
 }
 
 
