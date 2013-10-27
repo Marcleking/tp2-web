@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // Retourne du contenu au format xml en utf-8.
 header("Content-type: application/xml; charset=utf-8");
 
