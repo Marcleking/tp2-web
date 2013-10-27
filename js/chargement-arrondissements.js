@@ -5,9 +5,6 @@ var xhrArrondissements;
 (function (){
 	
 	var lienDocXml = 'php/load-arrondissements-xml.php';
-	
-	
-	
 	var erreur = false;
 	
 	try{

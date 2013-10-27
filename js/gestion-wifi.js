@@ -93,7 +93,7 @@ function envoieAvis(id) {
 
 	xhrEnvoieAvis = new XMLHttpRequest();
 	xhrEnvoieAvis.onreadystatechange = envoieAvis_callback;
-	xhrEnvoieAvis.open('POST', 'php/envoieAvis.php', false);
+	xhrEnvoieAvis.open('POST', 'php/envoieAvis.php', true);
 	xhrEnvoieAvis.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhrEnvoieAvis.send("Commentaire="+commentaire+ "&idWifi=" + id);
 	

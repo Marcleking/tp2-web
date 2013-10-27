@@ -42,7 +42,6 @@ function initCarte() {
 function getCurrentPositionSuccess(position) {
 	var positionUtilisateur = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	carte.setCenter(positionUtilisateur);
-	
 	if (typeof listeWifi.erreur == "undefined") {
 		//Identification des wifi proche (5km)
 		for(var i = 0; i < listeWifi.wifi.length; i++) {
