@@ -1,13 +1,13 @@
 com.dinfogarneau.cours526.elementsCharges = {
 	"dom": false,
 	"listeWifi": false,
-	"com.dinfogarneau.cours526.listeAvis": false,
+	"listeAvis": false,
 	"arrondissements": false,
 	"map": false
 };
 com.dinfogarneau.cours526.carte;
 com.dinfogarneau.cours526.listeWifi;
-com.dinfogarneau.cours526.infoWindowOuvert;
+com.dinfogarneau.cours526.wifiOuvert;
 com.dinfogarneau.cours526.latDefaut = 46.876423;
 com.dinfogarneau.cours526.longDefaut = -71.190285;
 com.dinfogarneau.cours526.layerKml;
