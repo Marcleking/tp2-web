@@ -58,6 +58,9 @@ function creerArrondissements(){
 			} 
 		);
 	}
+	
+	ajoutArrondissementsMenu(arrondissements);
+	
 }
 
 function genererCouleurArrondissement (abrevation){
@@ -82,15 +85,120 @@ function rgbToHex(r, g, b) {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
-function ajoutArrondissementMenu(arrondissement){
+function ajoutArrondissementsMenu(arrondissements){
+	
+	var header = document.createElement("h1");
+	header.textContent = "Arrondissements de la Ville de Québec";
+	
+	
+	var br = document.createElement("br");
+
 	var checkbox = document.createElement("input");
 	checkbox.type = "checkbox";
-	checkbox.id = arrondissement.abrevation
-	checkbox.name="arrondissements";
+	checkbox.id = "toutCocherDecocher";
+	checkbox.name="tousArrondissements";
 	checkbox.checked = true;
-	
+	//checkbox.addEventListener('click',function(){toutCocherDecocher(checkbox);},false);
+
 	var label = document.createElement("label");
+	label.textContent = "Tout décocher";
+	label.htmlFor = checkbox.id;
+
+	$("arrondissements").appendChild(header,br);
+	$("arrondissements").appendChild(checkbox);
 	
+	br = document.createElement("br");
 	
+	$("arrondissements").appendChild(label);
+	$("arrondissements").appendChild(br);
+		
+	addEvent([checkbox],"global");
+		
+	for (var i = 0; i < arrondissements.length; i++){
 	
+		checkbox = document.createElement("input");
+		checkbox.type = "checkbox";
+		checkbox.id = arrondissements[i].abrevation;
+		checkbox.name="arrondissements";
+		checkbox.checked = true;
+		
+		label = document.createElement("label");
+		label.htmlFor = checkbox.id;
+		label.textContent = arrondissements[i].nom;
+
+		br = document.createElement("br");
+		
+		$("arrondissements").appendChild(checkbox);
+		$("arrondissements").appendChild(label);
+		$("arrondissements").appendChild(br);
+
+		addEvent([checkbox,i],"local");
+	}
+	
+	function addEvent(params,type){
+		if (type == "local"){
+			params[0].addEventListener('change',function(){afficherCacherArrondissement(arrondissements[params[1]]);},false);
+		}
+		else if (type == "global"){
+			params[0].addEventListener('change',function(){toutCocherDecocher(params[0]);},false);
+		}
+	}
+}
+
+
+function afficherCacherArrondissement(arrondissement){
+	if(arrondissement.polygon.map == null)
+	{
+		arrondissement.polygon.setMap(carte);
+	}
+	else
+	{
+		arrondissement.polygon.setMap(null);
+	}
+}
+
+function toutCocherDecocher(checkbox){
+	
+	var chkArrondissements = document.getElementsByName("arrondissements");
+	var cocher, texte;
+	if(!checkbox.checked) {
+		cocher = false;
+		texte = "Tout cocher";
+	} else {  
+		cocher = true;
+		texte = "Tout décocher";
+	}
+	
+	var label = findLabelForControl(checkbox);
+	label.textContent = texte;
+	for(var i = 0; i < chkArrondissements.length; i++){
+		if(chkArrondissements[i].checked != cocher){
+			
+			
+			// Appel l'event change (le fait de changer la propriété ne trigger pas l'événement)
+			if ("createEvent" in document) {
+				var evt = document.createEvent("HTMLEvents");
+				evt.initEvent("change", false, true);
+				chkArrondissements[i].dispatchEvent(evt);
+			}
+			else{
+				chkArrondissements[i].fireEvent("onchange");
+			}
+			chkArrondissements[i].checked = cocher;
+		}
+	}
+}
+
+/////////////////////////////// À mettre dans util.js ??????
+// Permet de trouver l'élément label d'un contrôle
+function findLabelForControl(element) {
+	var idVal = element.id;
+	labels = document.getElementsByTagName('label');
+	
+	var i = 0;
+    while(labels[i].htmlFor != idVal){
+		i++;
+	}
+	return labels[i];
+   
 }

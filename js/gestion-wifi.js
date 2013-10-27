@@ -85,20 +85,6 @@ function genereInformation(wifi) {
 	"<input type='submit' value='Envoyer un avis sur ce wifi' onclick='envoieAvis(" + wifi.id + ")'/></p>";
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var xhrEnvoieAvis;
 
 function envoieAvis(id) {
