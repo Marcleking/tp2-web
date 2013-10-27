@@ -1,12 +1,11 @@
-function afficherCacherKml() {
-	if (typeof layerKml == "undefined") {
-		layerKml = new google.maps.KmlLayer({url: 'http://novitec.ca/map/donnees-ouvertes/rtc-trajets-kml.kml'});
+com.dinfogarneau.cours526.afficherCacherKml = function () {
+	if (typeof com.dinfogarneau.cours526.layerKml == "undefined") {
+		com.dinfogarneau.cours526.layerKml = new google.maps.KmlLayer({url: 'http://novitec.ca/map/donnees-ouvertes/rtc-trajets-kml.kml'});
 	}
 
-	if (typeof layerKml.map == "undefined")
-	{ 
-		layerKml.setMap(carte);
+	if (typeof com.dinfogarneau.cours526.layerKml.map == "undefined") { 
+		com.dinfogarneau.cours526.layerKml.setMap(carte);
 	} else {
-		layerKml.setMap(undefined);
+		com.dinfogarneau.cours526.layerKml.setMap(undefined);
 	}
 }
