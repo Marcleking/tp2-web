@@ -79,9 +79,9 @@ com.dinfogarneau.cours526.getCurrentPositionFail = function (erreur) {
 }
 
 com.dinfogarneau.cours526.initialisation = function () {
-		$("controle").addEventListener('click', com.dinfogarneau.cours526.gestionMenu, false);
-		$("kml-rtc-checkbox").addEventListener('click', com.dinfogarneau.cours526.afficherCacherKml, false);
-		$("liste-de-wifi").addEventListener('change', function() {
+		com.dinfogarneau.cours526.$("controle").addEventListener('click', com.dinfogarneau.cours526.gestionMenu, false);
+		com.dinfogarneau.cours526.$("kml-rtc-checkbox").addEventListener('click', com.dinfogarneau.cours526.afficherCacherKml, false);
+		com.dinfogarneau.cours526.$("liste-de-wifi").addEventListener('change', function() {
 			com.dinfogarneau.cours526.ouvrirInfoWindow(com.dinfogarneau.cours526.listeWifi.wifi[$("liste-de-wifi").value]);
 		}, false);
 	}
@@ -89,7 +89,7 @@ com.dinfogarneau.cours526.initialisation = function () {
 window.addEventListener('DOMContentLoaded' , function() {
 	com.dinfogarneau.cours526.initialisation();
 	com.dinfogarneau.cours526.controleurChargement("dom");
-	com.dinfogarneau.cours526.chargerScriptAsync("https://maps.googleapis.com/maps/api/js?libraries=geometry,places&sensor=true&callback=mapChargee", null);
+	com.dinfogarneau.cours526.chargerScriptAsync("https://maps.googleapis.com/maps/api/js?libraries=geometry,places&sensor=true&callback=com.dinfogarneau.cours526.mapChargee", null);
 }, false);
 
 
