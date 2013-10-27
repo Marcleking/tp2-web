@@ -15,7 +15,7 @@ function ajoutRepereWifi() {
 		for(var j = 0; j<listeAvis.length; j++)
 		{
 			if (listeAvis[j].IdWifi == listeWifi.wifi[i].id) {
-				avis += "<hr />" + escape(listeAvis[j].Commentaire) + "<br />";
+				avis += "<hr />" + listeAvis[j].Commentaire + "<br />";
 			}
 		}
 
@@ -33,7 +33,7 @@ function ajoutRepereWifi() {
 		
 
 		gestionClickRepere(listeWifi.wifi[i]);
-		gestionClickRepereDansMenu(listeWifi.wifi[i]);
+		gestionClickRepereDansMenu(listeWifi.wifi[i], i);
 
 	}
 }
@@ -44,16 +44,13 @@ function gestionClickRepere(wifi) {
 		});
 }
 
-function gestionClickRepereDansMenu (wifi) {
+function gestionClickRepereDansMenu (wifi, position) {
 	//Ajout du wifi à l'interface HTML
-	
+	console.log(wifi);
 	var option = document.createElement("option");
 	option.text = wifi.Nom_batiment;
-	option.value = wifi.id;
+	option.value = position;
 	$("liste-de-wifi").add(option, null);
-
-
-
 }
 
 function ouvrirInfoWindow(wifi) {
@@ -89,7 +86,7 @@ var xhrEnvoieAvis;
 
 function envoieAvis(id) {
 
-	var commentaire = escape($("leCommentaire").value);
+	var commentaire = $("leCommentaire").value;
 
 	xhrEnvoieAvis = new XMLHttpRequest();
 	xhrEnvoieAvis.onreadystatechange = envoieAvis_callback;

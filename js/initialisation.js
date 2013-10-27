@@ -80,10 +80,10 @@ function getCurrentPositionFail(erreur) {
 }
 
 function initialisation() {
-		$("controle").addEventListener('click', gestionMenu, false);
+		$("controle").addEventListener('click', com.dinfogarneau.cours526.gestionMenu, false);
 		$("kml-rtc-checkbox").addEventListener('click', afficherCacherKml, false);
 		$("liste-de-wifi").addEventListener('change', function() {
-			ouvrirInfoWindow(listeWifi.wifi[$("liste-de-wifi").value - 1]);
+			ouvrirInfoWindow(listeWifi.wifi[$("liste-de-wifi").value]);
 		}, false);
 	}
 

@@ -6,6 +6,7 @@
 	<meta charset="utf-8" />
 	<title>Travail pratique #2</title>
 	<link type="text/css" href="css/style.css" rel="stylesheet" />
+	<script src="js/namespace.js"></script>
 	<script src="js/util.js"></script>
 	<script src="js/chargement-wifi.js"></script>
 	<script src="js/gestion-kml.js"></script>
@@ -16,7 +17,7 @@
 	<script src="js/chargement-avis.js"></script>
 	<script>
 
-	function gestionMenu() {
+	com.dinfogarneau.cours526.gestionMenu = function () {
 
 		if ($("menu-info").className == "menu-info-cache") {
 			$("menu-info").className = "menu-info";
