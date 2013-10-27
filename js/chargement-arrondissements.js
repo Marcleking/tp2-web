@@ -1,27 +1,6 @@
 // Charge le document XML
 
-com.dinfogarneau.cours526.xhrArrondissements;
-
-(function (){
-	
-	var lienDocXml = 'php/load-arrondissements-xml.php';
-	var erreur = false;
-	
-	try{
-		com.dinfogarneau.cours526.xhrArrondissements = new XMLHttpRequest();
-	} catch (e){
-		alert('Erreur: Impossible de créer l\'objet XMLHttpRequest');
-		erreur = true;
-	}
-	
-	if(!erreur){
-		// Fonction à appeler lorsque l'état de la requête change (callback).
-		com.dinfogarneau.cours526.xhrArrondissements.onreadystatechange = com.dinfogarneau.cours526.xhrArrondissementsCallback
-		// Configuration de la requête (GET) en mode asynchrone (true).
-		com.dinfogarneau.cours526.xhrArrondissements.open('GET', lienDocXml, true);
-		com.dinfogarneau.cours526.xhrArrondissements.send(null);
-	}
-})();
+com.dinfogarneau.cours526.xhrArrondissements = null;
 
 // Fonction callback pour la requête AJAX
 com.dinfogarneau.cours526.xhrArrondissementsCallback = function (){
@@ -37,4 +16,27 @@ com.dinfogarneau.cours526.xhrArrondissementsCallback = function (){
 			com.dinfogarneau.cours526.controleurChargement("arrondissements");
 		}
 	}
-}
+};
+
+(function (){
+	
+	var lienDocXml = 'php/load-arrondissements-xml.php';
+	var erreur = false;
+	
+	try{
+		com.dinfogarneau.cours526.xhrArrondissements = new XMLHttpRequest();
+	} catch (e){
+		alert('Erreur: Impossible de créer l\'objet XMLHttpRequest');
+		erreur = true;
+	}
+	
+	if(!erreur){
+		// Fonction à appeler lorsque l'état de la requête change (callback).
+		com.dinfogarneau.cours526.xhrArrondissements.onreadystatechange = com.dinfogarneau.cours526.xhrArrondissementsCallback;
+		// Configuration de la requête (GET) en mode asynchrone (true).
+
+		com.dinfogarneau.cours526.xhrArrondissements.open('GET', lienDocXml, true);
+		com.dinfogarneau.cours526.xhrArrondissements.send(null);
+	}
+})();
+

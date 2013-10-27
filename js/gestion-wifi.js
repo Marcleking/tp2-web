@@ -20,6 +20,8 @@ com.dinfogarneau.cours526.ajoutRepereWifi = function () {
 			}
 		}
 
+		com.dinfogarneau.cours526.listeWifi.wifi[i].avis = avis;
+		
 		var optionsRepere = {"position": positionWifi,
 							"map": com.dinfogarneau.cours526.carte,
 							"icon": icon,
@@ -27,9 +29,10 @@ com.dinfogarneau.cours526.ajoutRepereWifi = function () {
 							"draggable": false,
 							"animation": google.maps.Animation.DROP,
 							"title": "Wifi"};
+
 		var information = com.dinfogarneau.cours526.genereInformation(com.dinfogarneau.cours526.listeWifi.wifi[i]);
 
-		com.dinfogarneau.cours526.listeWifi.wifi[i].avis = avis;
+		
 		com.dinfogarneau.cours526.listeWifi.wifi[i].repere = new google.maps.Marker(optionsRepere);
 		com.dinfogarneau.cours526.listeWifi.wifi[i].infoWindow = new google.maps.InfoWindow({content: information});
 		
@@ -38,13 +41,13 @@ com.dinfogarneau.cours526.ajoutRepereWifi = function () {
 		com.dinfogarneau.cours526.gestionClickRepereDansMenu(com.dinfogarneau.cours526.listeWifi.wifi[i], i);
 
 	}
-}
+};
 
 com.dinfogarneau.cours526.gestionClickRepere = function (wifi) {
 	google.maps.event.addListener(wifi.repere, "click", function() { 
 			com.dinfogarneau.cours526.ouvrirInfoWindow(wifi);
 		});
-}
+};
 
 com.dinfogarneau.cours526.gestionClickRepereDansMenu = function  (wifi, position) {
 	//Ajout du wifi à l'interface HTML
@@ -52,8 +55,8 @@ com.dinfogarneau.cours526.gestionClickRepereDansMenu = function  (wifi, position
 	var option = document.createElement("option");
 	option.text = wifi.Nom_batiment;
 	option.value = position;
-	$("liste-de-wifi").add(option, null);
-}
+	com.dinfogarneau.cours526.$("liste-de-wifi").add(option, null);
+};
 
 com.dinfogarneau.cours526.ouvrirInfoWindow = function (wifi) {
 	if (typeof com.dinfogarneau.cours526.wifiOuvert != "undefined") {
@@ -64,12 +67,12 @@ com.dinfogarneau.cours526.ouvrirInfoWindow = function (wifi) {
 		com.dinfogarneau.cours526.carte.panTo(wifi.repere.getPosition());
 		com.dinfogarneau.cours526.wifiOuvert = wifi;
 	} catch (e) {}
-}
+};
 
 com.dinfogarneau.cours526.modifierInfoWindow = function (commentaire) {
 	com.dinfogarneau.cours526.wifiOuvert.avis += "<hr />" + commentaire + "<br />";
-	com.dinfogarneau.cours526.wifiOuvert.infoWindow.setContent(genereInformation(wifiOuvert));
-}
+	com.dinfogarneau.cours526.wifiOuvert.infoWindow.setContent(com.dinfogarneau.cours526.genereInformation(com.dinfogarneau.cours526.wifiOuvert));
+};
 
 
 com.dinfogarneau.cours526.genereInformation = function (wifi) {
@@ -78,8 +81,8 @@ com.dinfogarneau.cours526.genereInformation = function (wifi) {
 	"<p>Arrondissement : " + wifi.Arrondissement + "</p>" +
 	"<p>Avis<br />" + wifi.avis + " </p>" +
 	"<p><textarea id='leCommentaire' rows='4' cols='35'></textarea><br />" +
-	"<input type='submit' value='Envoyer un avis sur ce wifi' onclick='envoieAvis(" + wifi.id + ")'/></p>";
-}
+	"<input type='submit' value='Envoyer un avis sur ce wifi' onclick='com.dinfogarneau.cours526.envoieAvis(" + wifi.id + ")'/></p>";
+};
 
 com.dinfogarneau.cours526.xhrEnvoieAvis;
 
@@ -94,7 +97,7 @@ com.dinfogarneau.cours526.envoieAvis = function (id) {
 	com.dinfogarneau.cours526.xhrEnvoieAvis.send("Commentaire="+commentaire+ "&idWifi=" + id);
 	
 	com.dinfogarneau.cours526.modifierInfoWindow(commentaire);
-}
+};
 
 com.dinfogarneau.cours526.envoieAvis_callback = function () {
 	var objWifi;
@@ -108,6 +111,6 @@ com.dinfogarneau.cours526.envoieAvis_callback = function () {
 		}
 	}
 	/////Faire gestion quand le call marche pas
-}
+};
 
 

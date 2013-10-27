@@ -8,7 +8,7 @@ com.dinfogarneau.cours526.creerArrondissements = function (){
 	
 	for(var i = 0; i < lesCoordsArrondissements.length; i++) {
 		// Génération de la couleur pour l'arrondissement
-		var couleur = genererCouleurArrondissement(lesAbrevations[i].textContent);
+		var couleur = com.dinfogarneau.cours526.genererCouleurArrondissement(lesAbrevations[i].textContent);
 		
 		// Création du polygone
 		
@@ -47,7 +47,7 @@ com.dinfogarneau.cours526.creerArrondissements = function (){
 		arrondissements.push( 
 			{	"polygon":	new google.maps.Polygon( {
 							paths: lesPolygones,
-							map: carte,
+							map: com.dinfogarneau.cours526.carte,
 							strokeWeight: 2,
 							fillColor: couleur,
 							fillOpacity: 0.35
@@ -60,7 +60,7 @@ com.dinfogarneau.cours526.creerArrondissements = function (){
 	
 	com.dinfogarneau.cours526.ajoutArrondissementsMenu(arrondissements);
 	
-}
+};
 
 com.dinfogarneau.cours526.genererCouleurArrondissement = function (abrevation){
 	// Déclaration des variables nécessaires à la génération du nombre
@@ -73,16 +73,16 @@ com.dinfogarneau.cours526.genererCouleurArrondissement = function (abrevation){
 	}
 	
 	return com.dinfogarneau.cours526.rgbToHex(couleurs[0],couleurs[1],couleurs[2]);
-}
+};
 
 com.dinfogarneau.cours526.componentToHex = function (c) {
     var hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
-}
+};
 
 com.dinfogarneau.cours526.rgbToHex = function (r, g, b) {
     return "#" + com.dinfogarneau.cours526.componentToHex(r) + com.dinfogarneau.cours526.componentToHex(g) + com.dinfogarneau.cours526.componentToHex(b);
-}
+};
 
 com.dinfogarneau.cours526.ajoutArrondissementsMenu = function (arrondissements){
 	
@@ -140,7 +140,7 @@ com.dinfogarneau.cours526.ajoutArrondissementsMenu = function (arrondissements){
 			params[0].addEventListener('change',function(){com.dinfogarneau.cours526.toutCocherDecocher(params[0]);},false);
 		}
 	}
-}
+};
 
 com.dinfogarneau.cours526.afficherCacherArrondissement = function (arrondissement){
 	if(arrondissement.polygon.map == null)
@@ -151,7 +151,7 @@ com.dinfogarneau.cours526.afficherCacherArrondissement = function (arrondissemen
 	{
 		arrondissement.polygon.setMap(null);
 	}
-}
+};
 
 com.dinfogarneau.cours526.toutCocherDecocher = function (checkbox){
 	
@@ -181,7 +181,7 @@ com.dinfogarneau.cours526.toutCocherDecocher = function (checkbox){
 			chkArrondissements[i].checked = cocher;
 		}
 	}
-}
+};
 
 /////////////////////////////// À mettre dans util.js ??????
 // Permet de trouver l'élément label d'un contrôle
@@ -194,4 +194,4 @@ com.dinfogarneau.cours526.findLabelForControl = function (element) {
 		i++;
 	}
 	return labels[i];
-}
+};

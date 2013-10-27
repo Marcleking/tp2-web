@@ -27,16 +27,16 @@ com.dinfogarneau.cours526.initcarte = function () {
 			}
 		};
 	
-	com.dinfogarneau.cours526.carte = new google.maps.Map(document.getElementById("com.dinfogarneau.cours526.carte"), options);
+	com.dinfogarneau.cours526.carte = new google.maps.Map(document.getElementById("carte"), options);
 
 	if (typeof navigator.geolocation != "undefined") {
-		navigator.geolocation.getCurrentPosition(getCurrentPositionSuccess, getCurrentPositionFail, {});
+		navigator.geolocation.getCurrentPosition(com.dinfogarneau.cours526.getCurrentPositionSuccess, com.dinfogarneau.cours526.getCurrentPositionFail, {});
 	} else {
 		//Le navigateur ne gère pas la géolocalisation
 		com.dinfogarneau.cours526.carte.setCenter(new google.maps.LatLng(com.dinfogarneau.cours526.latDefaut, com.dinfogarneau.cours526.longDefaut));
 		com.dinfogarneau.cours526.ajoutRepereWifi();
 	}
-}
+};
 
 com.dinfogarneau.cours526.getCurrentPositionSuccess = function (position) {
 	var positionUtilisateur = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -70,21 +70,21 @@ com.dinfogarneau.cours526.getCurrentPositionSuccess = function (position) {
 	
 	com.dinfogarneau.cours526.gestionClickRepere(repere.getTitle(), repere);
 
-}
+};
 
 com.dinfogarneau.cours526.getCurrentPositionFail = function (erreur) {
 	//Échec de la géolocalisation
 	com.dinfogarneau.cours526.carte.setCenter(new google.maps.LatLng(com.dinfogarneau.cours526.latDefaut, com.dinfogarneau.cours526.longDefaut));
 	com.dinfogarneau.cours526.ajoutRepereWifi();
-}
+};
 
 com.dinfogarneau.cours526.initialisation = function () {
-		com.dinfogarneau.cours526.$("controle").addEventListener('click', com.dinfogarneau.cours526.gestionMenu, false);
-		com.dinfogarneau.cours526.$("kml-rtc-checkbox").addEventListener('click', com.dinfogarneau.cours526.afficherCacherKml, false);
-		com.dinfogarneau.cours526.$("liste-de-wifi").addEventListener('change', function() {
-			com.dinfogarneau.cours526.ouvrirInfoWindow(com.dinfogarneau.cours526.listeWifi.wifi[$("liste-de-wifi").value]);
-		}, false);
-	}
+	com.dinfogarneau.cours526.$("controle").addEventListener('click', com.dinfogarneau.cours526.gestionMenu, false);
+	com.dinfogarneau.cours526.$("kml-rtc-checkbox").addEventListener('click', com.dinfogarneau.cours526.afficherCacherKml, false);
+	com.dinfogarneau.cours526.$("liste-de-wifi").addEventListener('change', function() {
+		com.dinfogarneau.cours526.ouvrirInfoWindow(com.dinfogarneau.cours526.listeWifi.wifi[com.dinfogarneau.cours526.$("liste-de-wifi").value]);
+	}, false);
+};
 
 window.addEventListener('DOMContentLoaded' , function() {
 	com.dinfogarneau.cours526.initialisation();
@@ -95,10 +95,11 @@ window.addEventListener('DOMContentLoaded' , function() {
 
 com.dinfogarneau.cours526.mapChargee = function () {
 	com.dinfogarneau.cours526.controleurChargement("map");
-}
+};
 
 com.dinfogarneau.cours526.controleurChargement = function (nouvelleElementCharge) {
 	//Verification si l'élément est dans les éléments géré
+	
 	if(typeof com.dinfogarneau.cours526.elementsCharges[nouvelleElementCharge] != "undefined") {
 		com.dinfogarneau.cours526.elementsCharges[nouvelleElementCharge] = true;
 		
@@ -113,15 +114,15 @@ com.dinfogarneau.cours526.controleurChargement = function (nouvelleElementCharge
 			com.dinfogarneau.cours526.traitementPostChargement();
 		}
 	}
-}
+};
 
-com.dinfogarneau.cours526.traitementPostChargement = function () { //////////mettre dans un fichier asychrone
+com.dinfogarneau.cours526.traitementPostChargement = function () {
 	//Map
-	initcom.dinfogarneau.cours526.carte();
+	com.dinfogarneau.cours526.initcarte();
 
 	com.dinfogarneau.cours526.creerArrondissements();
 
-	//Afficher le kml sur la com.dinfogarneau.cours526.carte
+	//Afficher le kml sur la carte
 	com.dinfogarneau.cours526.afficherCacherKml();
-}
+};
 

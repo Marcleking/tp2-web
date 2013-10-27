@@ -7,9 +7,9 @@
 		script.addEventListener('load', callbackFct, false);
 	}
 	document.documentElement.firstChild.appendChild(script);
-}
+};
 
 com.dinfogarneau.cours526.$ = function (idElem) {
 	return document.getElementById(idElem);
-}
+};
 

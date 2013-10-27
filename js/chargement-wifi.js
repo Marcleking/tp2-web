@@ -1,16 +1,4 @@
-﻿com.dinfogarneau.cours526.xhrWifi;
-
-(function () {
-
-	com.dinfogarneau.cours526.xhrWifi = new XMLHttpRequest();
-
-	com.dinfogarneau.cours526.xhrWifi.onreadystatechange = com.dinfogarneau.cours526.chargementWifi_callback;
-
-	com.dinfogarneau.cours526.xhrWifi.open('GET', 'php/retourneWifi.php', true);
-
-	com.dinfogarneau.cours526.xhrWifi.send(null);
-
-})();
+﻿com.dinfogarneau.cours526.xhrWifi = null;
 
 com.dinfogarneau.cours526.chargementWifi_callback = function () {
 	var objWifi;
@@ -25,7 +13,20 @@ com.dinfogarneau.cours526.chargementWifi_callback = function () {
 		com.dinfogarneau.cours526.listeWifi = objWifi;
 		com.dinfogarneau.cours526.controleurChargement("listeWifi");
 	}
-}
+};
+
+(function () {
+
+	com.dinfogarneau.cours526.xhrWifi = new XMLHttpRequest();
+	com.dinfogarneau.cours526.xhrWifi.onreadystatechange = com.dinfogarneau.cours526.chargementWifi_callback;
+
+	com.dinfogarneau.cours526.xhrWifi.open('GET', 'php/retourneWifi.php', true);
+
+	com.dinfogarneau.cours526.xhrWifi.send(null);
+
+})();
+
+
 
 
 
