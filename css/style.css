@@ -103,10 +103,35 @@ label{
 @media screen and (max-width: 640px) {
     #menu-info {
         width: 100%;
-        float: right;
-        background-color: white;
+		float: right;
         text-align: center;
     }
+	
+	.menu-info{
+		height:100%;
+	}
+	
+	.controle {
+    width: 100%;
+    height: 30px;
+    float: right;
+	}
+
+	.controle-cache {
+		width: 35px;
+		height: 30px;
+		float: left;
+		position: absolute;
+		background-color: rgba(255,255,255,0.8);
+	}
+	
+	.ligne {
+    display: block;  
+    margin: 5px 0px 4px 0px;  
+    height: 3px;  
+    background: black;
+}
+	
 
 }
 

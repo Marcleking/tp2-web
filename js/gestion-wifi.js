@@ -126,9 +126,7 @@ com.dinfogarneau.cours526.envoieAvis_callback = function () {
 			alert("La réponse AJAX n\'est pas une expression JSON valide.");
 		}
 	}
-	else{
-		alert( 'Erreur: La requête HTTP a échoué (code=' + com.dinfogarneau.cours526.xhrArrondissements.status +  ')' );
-	}
+	
 };
 
 
