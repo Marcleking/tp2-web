@@ -1,3 +1,12 @@
+/************************************************
+	Bouchard-Marceau, Marc-Antoine
+	Ouellet, Francis
+	
+	initialisation.js
+	Dernière modification : 2013-10-27
+************************************************/
+
+// Variables globales
 com.dinfogarneau.cours526.elementsCharges = {
 	"dom": false,
 	"listeWifi": false,
@@ -12,8 +21,9 @@ com.dinfogarneau.cours526.latDefaut = 46.876423;
 com.dinfogarneau.cours526.longDefaut = -71.190285;
 com.dinfogarneau.cours526.layerKml;
 com.dinfogarneau.cours526.listeAvis;
-com.dinfogarneau.cours526.docXML;
+com.dinfogarneau.cours526.arrondXML;
 
+// Ajoute la carte à l'écran
 com.dinfogarneau.cours526.initcarte = function () {
 	var options = {
 		"zoom": 15,
@@ -29,15 +39,17 @@ com.dinfogarneau.cours526.initcarte = function () {
 	
 	com.dinfogarneau.cours526.carte = new google.maps.Map(document.getElementById("carte"), options);
 
+	// Tente de placer le point central à l'endroit où se trouve le client
 	if (typeof navigator.geolocation != "undefined") {
 		navigator.geolocation.getCurrentPosition(com.dinfogarneau.cours526.getCurrentPositionSuccess, com.dinfogarneau.cours526.getCurrentPositionFail, {});
 	} else {
 		//Le navigateur ne gère pas la géolocalisation
 		com.dinfogarneau.cours526.carte.setCenter(new google.maps.LatLng(com.dinfogarneau.cours526.latDefaut, com.dinfogarneau.cours526.longDefaut));
-		com.dinfogarneau.cours526.ajoutRepereWifi();
+		com.dinfogarneau.cours526.ajoutRepereWifis();
 	}
 };
 
+// 
 com.dinfogarneau.cours526.getCurrentPositionSuccess = function (position) {
 	var positionUtilisateur = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	com.dinfogarneau.cours526.carte.setCenter(positionUtilisateur);
@@ -51,13 +63,14 @@ com.dinfogarneau.cours526.getCurrentPositionSuccess = function (position) {
 				com.dinfogarneau.cours526.listeWifi.wifi[i].proche = false;
 			}
 		}
-		com.dinfogarneau.cours526.ajoutRepereWifi();
+		// Ajoute les repères Wifi à la carte
+		com.dinfogarneau.cours526.ajoutReperesWifi();
 		
 	} else {
-		alert("Impossible de trouver la liste des wifi : " + com.dinfogarneau.cours526.listeWifi.erreur);
+		alert("Impossible de trouver la liste des bornes wifi ZAP : " + com.dinfogarneau.cours526.listeWifi.erreur);
 	}
 	
-	//Ajout d'un repère indiquant la géolocalisation de l'utilisateur
+	//Ajout d'un repère indiquant la localisation de l'utilisateur
 	var optionsRepere = {"position": positionUtilisateur,
 						"map": com.dinfogarneau.cours526.carte,
 						"icon": "image/ici.png",
@@ -72,12 +85,13 @@ com.dinfogarneau.cours526.getCurrentPositionSuccess = function (position) {
 
 };
 
+// Définit la position par rapport à la carte si la géolocalisation échoue
 com.dinfogarneau.cours526.getCurrentPositionFail = function (erreur) {
-	//Échec de la géolocalisation
 	com.dinfogarneau.cours526.carte.setCenter(new google.maps.LatLng(com.dinfogarneau.cours526.latDefaut, com.dinfogarneau.cours526.longDefaut));
-	com.dinfogarneau.cours526.ajoutRepereWifi();
+	com.dinfogarneau.cours526.ajoutReperesWifi();
 };
 
+// Ajoute les événements sur le bouton du menu, la boite de dialogue de l'affichage du KML et la liste des bornes Wifi
 com.dinfogarneau.cours526.initialisation = function () {
 	com.dinfogarneau.cours526.$("controle").addEventListener('click', com.dinfogarneau.cours526.gestionMenu, false);
 	com.dinfogarneau.cours526.$("kml-rtc-checkbox").addEventListener('click', com.dinfogarneau.cours526.afficherCacherKml, false);
@@ -86,22 +100,26 @@ com.dinfogarneau.cours526.initialisation = function () {
 	}, false);
 };
 
+// Fonctions à exécuter lorsque que le DOM est chargé
 window.addEventListener('DOMContentLoaded' , function() {
 	com.dinfogarneau.cours526.initialisation();
 	com.dinfogarneau.cours526.controleurChargement("dom");
 	com.dinfogarneau.cours526.chargerScriptAsync("https://maps.googleapis.com/maps/api/js?libraries=geometry,places&sensor=true&callback=com.dinfogarneau.cours526.mapChargee", null);
 }, false);
 
-
+// Indique au controleur de chargement que la carte est chargée
 com.dinfogarneau.cours526.mapChargee = function () {
 	com.dinfogarneau.cours526.controleurChargement("map");
 };
 
-com.dinfogarneau.cours526.controleurChargement = function (nouvelleElementCharge) {
+// Controleur de chargement
+// À chaque nouvel élément chargé, vérifie si tous les éléments sont chargés
+// Lorsque tous les éléments sont chargés, déclenche le traitement post-chargement
+com.dinfogarneau.cours526.controleurChargement = function (nouvelElementCharge) {
 	//Verification si l'élément est dans les éléments géré
 	
-	if(typeof com.dinfogarneau.cours526.elementsCharges[nouvelleElementCharge] != "undefined") {
-		com.dinfogarneau.cours526.elementsCharges[nouvelleElementCharge] = true;
+	if(typeof com.dinfogarneau.cours526.elementsCharges[nouvelElementCharge] != "undefined") {
+		com.dinfogarneau.cours526.elementsCharges[nouvelElementCharge] = true;
 		
 		//Vérification si tout les éléments sont charger
 		var valCrit = false;
@@ -109,13 +127,17 @@ com.dinfogarneau.cours526.controleurChargement = function (nouvelleElementCharge
 			if(!com.dinfogarneau.cours526.elementsCharges[elem]) {
 				valCrit = true; }
 		}
-		//Si tout les éléments on été charger on
+		//Si tout les éléments ont été chargés
 		if (!valCrit) {
 			com.dinfogarneau.cours526.traitementPostChargement();
 		}
 	}
 };
 
+// Traitement post-chargement :
+// - Affichage de la carte
+// - Ajout des arrondissements à la carte
+// - Ajout de la couche KML à la carte
 com.dinfogarneau.cours526.traitementPostChargement = function () {
 	//Map
 	com.dinfogarneau.cours526.initcarte();

@@ -1,4 +1,13 @@
 ﻿<?php
+
+	/************************************************
+		Bouchard-Marceau, Marc-Antoine
+		Ouellet, Francis
+		
+		retourne-wifi.php
+		Dernière modification : 2013-10-27
+	************************************************/
+
 	header("Content-type: application/json; charset=utf-8");
 	header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
 	header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
@@ -63,8 +72,4 @@
 		echo "\t}\n";
 		echo "}\n";
 	}
-
-	// Simulation d'un délai avant de fournir la réponse;
-	// ceci permet de voir la zone indiquant le chargement AJAX et de réaliser que la requête HTTP est asynchrone.
-	//sleep(2);
 ?>

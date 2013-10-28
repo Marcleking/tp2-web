@@ -1,5 +1,11 @@
 ﻿<?php
-
+/************************************************
+	Bouchard-Marceau, Marc-Antoine
+	Ouellet, Francis
+	
+	extrait-wifi.php
+	Dernière modification : 2013-10-27
+************************************************/
 
 //Création de la structure de la base de donnée
 
@@ -48,7 +54,6 @@
 	//Extraction des données sur les wifi
 	$xml=simplexml_load_file("../donnees-ouvertes/wifi.kml");
 
-	/////////////////////////À REVOIR
 	foreach($xml->Document->Folder->Placemark as $child)
 	{
 		if($child->count() > 0) {

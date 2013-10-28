@@ -1,4 +1,12 @@
 ﻿<!DOCTYPE html5>
+<!-----------------------------------------------
+	Bouchard-Marceau, Marc-Antoine
+	Ouellet, Francis
+	
+	index.html
+	Dernière modification : 2013-10-27
+------------------------------------------------>
+
 <!-- Syntaxe: HTML5 Polyglot, Conformité: HTML5 et XML (XHTML5) -->
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
@@ -10,35 +18,12 @@
 	<script src="js/namespace.js"></script>
 	<script src="js/util.js"></script>
 	<script src="js/chargement-wifi.js"></script>
-	<script src="js/gestion-kml.js"></script>
 	<script src="js/chargement-arrondissements.js"></script>
-	<script src="js/initialisation.js"></script>
+	<script src="js/chargement-avis.js"></script>
 	<script src="js/gestion-wifi.js"></script>
 	<script src="js/gestion-arrondissements.js"></script>
-	<script src="js/chargement-avis.js"></script>
-	<script>
-
-	com.dinfogarneau.cours526.gestionMenu = function () {
-
-		if (com.dinfogarneau.cours526.$("menu-info").className == "menu-info-cache") {
-			com.dinfogarneau.cours526.$("menu-info").className = "menu-info";
-		} else {
-			com.dinfogarneau.cours526.$("menu-info").className = "menu-info-cache";
-		}
-		
-		if (com.dinfogarneau.cours526.$("contenu-menu-info").className == "contenu-menu-info") {
-			com.dinfogarneau.cours526.$("contenu-menu-info").className = "contenu-menu-info-cache"
-		} else {
-			com.dinfogarneau.cours526.$("contenu-menu-info").className = "contenu-menu-info"
-		}
-		
-		if (com.dinfogarneau.cours526.$("controle").className == "controle") {
-			com.dinfogarneau.cours526.$("controle").className = "controle-cache";
-		} else {
-			com.dinfogarneau.cours526.$("controle").className = "controle";
-		}
-	}
-	</script>
+	<script src="js/gestion-kml.js"></script>
+	<script src="js/initialisation.js"></script>
 </head>
 
 <body>
@@ -50,19 +35,22 @@
 			<span class="ligne"></span>
 		</div>
 		<div id="contenu-menu-info" class="contenu-menu-info-cache">
-			<select id="liste-de-wifi"><option style="text-align:center;">Choississez un wifi</option></select>
-			<div id="kml-rtc">
+			<div class="bloc">
+				<h1>Afficher une borne ZAP</h1>
+				<select id="liste-de-wifi">
+					<option>Choississez une borne</option>
+				</select>
+			</div>
+			<div id="kml-rtc" class="bloc">
 				<input type="checkbox" id="kml-rtc-checkbox" name="kml" checked="true"/>
 				<label for="kml-rtc-checkbox">Trajets des autobus du RTC</label>
 			</div>
-			<div id="arrondissements">
+			<div id="arrondissements" class="bloc">
 			</div>
 		</div>
 	</div>
 	<div id="carte"></div>
 
-	
-	
 </body>
 
 </html>

@@ -12,6 +12,16 @@ height: 100%;
 width: 100%;
 }
 
+h1{
+	font-size:20px;
+	text-align:center;
+	margin:5px;
+}
+
+.bloc{
+	border-bottom:2px solid grey;
+}
+
 #carte {
 height: 100%;
 background-color: #ccc;
@@ -20,7 +30,6 @@ background-color: #ccc;
 .menu-info {
     width: 350px;
     position: absolute;
-    height: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
@@ -37,6 +46,8 @@ background-color: #ccc;
 .contenu-menu-info {
     padding-top: 25px;
     padding-left: 10px;
+	padding-right:10px;
+	margin-bottom:20px;
 }
 
 .contenu-menu-info-cache {
@@ -44,7 +55,7 @@ background-color: #ccc;
 }
 
 .controle {
-    width: 25px;
+    width: 350px;
     height: 20px;
     float: right;
 }
@@ -72,6 +83,21 @@ background-color: #ccc;
     display: none;
 }
 
+#liste-de-wifi
+{
+	margin:10px;
+}
+
+#liste-de-wifi option{
+	text-align:center;
+}
+
+input, label{
+	margin:10px;
+}
+label{
+	margin-left:0px;
+}
 
 
 @media screen and (max-width: 640px) {
