@@ -22,7 +22,7 @@
 	//Création des tables
 	try {
 		/////////////À supprimer
-		$reqProf = "DROP TABLE Avis, wifi";
+		$reqProf = "DROP TABLE avis, wifi";
 		$prepReqProf = $connBD -> prepare($reqProf);
 		$prepReqProf -> execute();
 	
@@ -39,7 +39,7 @@
 		$prepReqProf -> execute();
 		
 		//Création de la table (si elle n'existe pas) listant les avis sur les wifi
-		$reqProf = "CREATE TABLE IF NOT EXISTS Avis (	Id int NOT NULL AUTO_INCREMENT,
+		$reqProf = "CREATE TABLE IF NOT EXISTS avis (	Id int NOT NULL AUTO_INCREMENT,
 														Commentaire varchar(5000) NOT NULL,
 														IdWifi smallint(5) NOT NULL,
 														FOREIGN KEY (IdWifi) REFERENCES wifi(Id),
@@ -53,7 +53,7 @@
 
 	//Extraction des données sur les wifi
 	$xml=simplexml_load_file("../donnees-ouvertes/wifi.kml");
-
+	
 	foreach($xml->Document->Folder->Placemark as $child)
 	{
 		if($child->count() > 0) {
