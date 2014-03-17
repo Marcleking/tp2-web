@@ -15,7 +15,7 @@
 
 	if (isset($_POST["Commentaire"]) && isset($_POST["idWifi"])) {
 		//Connexion à la base de données
-		require("../include/param-bd.inc");
+		require("../include/param-bd.php");
 		try {
 			$connBD = new PDO("mysql:host=$dbHote; dbname=$dbNom", $dbUtilisateur, $dbMotPasse, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 			$connBD -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
