@@ -1,3 +1,3 @@
-Application web disponible à l'adresse www.novitec.ca/map
+Application web disponible Ã  l'adresse wifi.bouchardm.com
 
-Application mobile testée sur Galaxy S3 avec le navigateur Google Chrome et Android de base
+Application mobile testÃ©e sur Galaxy S3 avec le navigateur Google Chrome et Android de base
